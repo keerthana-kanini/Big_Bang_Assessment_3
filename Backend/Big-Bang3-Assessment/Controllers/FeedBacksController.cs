@@ -23,7 +23,6 @@ namespace Big_Bang3_Assessment.Controllers
         }
 
         // GET: api/FeedBacks
-        [Authorize(Roles ="Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FeedBack>>> GetfeedBacks()
         {
@@ -86,6 +85,13 @@ namespace Big_Bang3_Assessment.Controllers
                 return BadRequest("invalid assessment id");
             }
             feedBack.user = feedback;
+
+            var feedback1 = await _context.agencies.FindAsync(feedBack.agency.Agency_Id);
+            if (feedback1 == null)
+            {
+                return BadRequest("invalid assessment id");
+            }
+            feedBack.agency = feedback1;
 
             _context.feedBacks.Add(feedBack);
             await _context.SaveChangesAsync();

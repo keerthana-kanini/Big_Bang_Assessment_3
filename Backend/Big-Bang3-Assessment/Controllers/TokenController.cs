@@ -88,7 +88,7 @@ namespace Big_Bang3_Assessment.Controllers
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                         new Claim("User_Id", user. User_Id.ToString()),
-                        new Claim("User_Email", user. User_Email),
+                        new Claim("User_Name", user. User_Name),
                         new Claim("User_Password", user. User_Password),
                         new Claim(ClaimTypes.Role, UserRole)
                     };
@@ -115,9 +115,9 @@ namespace Big_Bang3_Assessment.Controllers
             }
         }
 
-        private async Task<User> GetUser(string User_Email, string User_Password)
+        private async Task<User> GetUser(string User_Name, string User_Password)
         {
-            return await _context.users.FirstOrDefaultAsync(u => u.User_Email == User_Email && u.User_Password == User_Password);
+            return await _context.users.FirstOrDefaultAsync(u => u.User_Name == User_Name && u.User_Password == User_Password);
         }
 
         [HttpPost("Agent")]

@@ -2,6 +2,7 @@
 using Big_Bang3_Assessment.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
@@ -21,6 +22,24 @@ namespace Big_Bang3_Assessment.Controllers
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
+
+
+        [HttpGet("ByAgency/{agencyId}")]
+        public async Task<ActionResult<IEnumerable<AccommodationDetail>>> GetAccommodationsByAgency(int agencyId)
+        {
+            var accommodations = await _context.accommodations.Include(a => a.agency)
+                                                              .Where(a => a.agency.Agency_Id == agencyId)
+                                                              .ToListAsync();
+
+            if (accommodations == null || accommodations.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return accommodations;
+        }
+  
+
 
         [HttpPost]
         public async Task<ActionResult<AccommodationDetail>> Post([FromForm] AccommodationDetail accommodation, IFormFile hotelImageFile, IFormFile placeImageFile)
@@ -57,6 +76,20 @@ namespace Big_Bang3_Assessment.Controllers
             accommodation.agency = r;
 
             _context.accommodations.Add(accommodation);
+            await _context.SaveChangesAsync();
+
+            return accommodation;
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<AccommodationDetail>> DeleteAccommodation(int id)
+        {
+            var accommodation = await _context.accommodations.FindAsync(id);
+            if (accommodation == null)
+            {
+                return NotFound();
+            }
+
+            _context.accommodations.Remove(accommodation);
             await _context.SaveChangesAsync();
 
             return accommodation;

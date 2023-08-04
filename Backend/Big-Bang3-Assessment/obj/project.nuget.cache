@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4Rm+nkB5XMQHicWYakVAKdToz0DmwopyU3Ei2pTuNdi+B8NU8d66jwph7hzi1tO9mHC+D1XoEq47IJDp6lyBEw==",
+  "dgSpecHash": "1XrIXdsHDdDHn673wGF3igAHxRWDDrR25DZQlZPwVWPlPKzofB2mAzeyuRl1D33KGomti42uCtsJ9tPx+8+yrg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\test\\Downloads\\Big-Bang3-Assessment\\Big-Bang3-Assessment.csproj",
+  "projectFilePath": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\Big-Bang3-Assessment.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\test\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\test\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

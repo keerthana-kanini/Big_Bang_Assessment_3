@@ -11600,11 +11600,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\test\\Downloads\\Big-Bang3-Assessment\\Big-Bang3-Assessment.csproj",
+      "projectUniqueName": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\Big-Bang3-Assessment.csproj",
       "projectName": "Big-Bang3-Assessment",
-      "projectPath": "C:\\Users\\test\\Downloads\\Big-Bang3-Assessment\\Big-Bang3-Assessment.csproj",
+      "projectPath": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\Big-Bang3-Assessment.csproj",
       "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\test\\Downloads\\Big-Bang3-Assessment\\obj\\",
+      "outputPath": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
