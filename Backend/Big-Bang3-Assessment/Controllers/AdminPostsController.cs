@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Big_Bang3_Assessment.Data;
 using Big_Bang3_Assessment.Model;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Big_Bang3_Assessment.Controllers
 {
@@ -24,6 +25,7 @@ namespace Big_Bang3_Assessment.Controllers
         }
 
         // GET: api/AdminPosts
+        [Authorize(Roles = "Agent,Users")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AdminPost>>> GetAdminPost()
         {
@@ -77,6 +79,7 @@ namespace Big_Bang3_Assessment.Controllers
 
         // POST: api/AdminPosts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPost]
         public async Task<AdminPost> PostImages([FromForm] AdminPost doctor, IFormFile imageFile)
         {

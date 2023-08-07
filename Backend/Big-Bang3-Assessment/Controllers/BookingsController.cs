@@ -90,14 +90,29 @@ namespace Big_Bang3_Assessment.Controllers
             var agency = await _context.agencies.FindAsync(booking.agency.Agency_Id);
             if (agency == null)
             {
-                return BadRequest("invalid assessment id");
+                return BadRequest("Invalid agency ID");
             }
-           booking.agency = agency;
+            booking.agency = agency;
+
+
+
+            // Calculate amount_for_person and amount_for_childer
+            int numberOfPersons = booking.no_of_perons;
+            int numberOfChildren = booking.no_of_childer;
+            int rateForDay = booking.agency.rate_for_day;
+
+            booking.amount_for_person = numberOfPersons * rateForDay;
+            booking.amount_for_childer = numberOfChildren * rateForDay;
+
+            // Calculate booking_amount (total booking amount)
+            booking.booking_amount = booking.amount_for_person + booking.amount_for_childer;
+
             _context.Booking.Add(booking);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBooking", new { id = booking.Booking_Id }, booking);
         }
+
 
         // DELETE: api/Bookings/5
         [HttpDelete("{id}")]
@@ -114,6 +129,37 @@ namespace Big_Bang3_Assessment.Controllers
 
             return NoContent();
         }
+
+        // GET: api/Bookings/ByUser/{userId}
+        [HttpGet("ByUser/{userId}")]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByUser(int userId)
+        {
+            var bookings = await _context.Booking
+                .Include(b => b.user)
+                .Include(b => b.agency)
+                .Where(b => b.user.User_Id == userId)
+                .ToListAsync();
+
+            if (bookings == null)
+            {
+                return NotFound();
+            }
+
+            return bookings;
+        }
+
+
+        // GET: api/Bookings/ByAgency/{agencyId}
+        [HttpGet("ByAgency/{agencyId}")]
+        public async Task<ActionResult<int>> GetNumberOfBookingsByAgency(int agencyId)
+        {
+            var numberOfBookings = await _context.Booking
+                .CountAsync(b => b.agency.Agency_Id == agencyId);
+
+            return numberOfBookings;
+        }
+
+
 
         private bool BookingExists(int id)
         {

@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Big_Bang3_Assessment.Data;
 using Big_Bang3_Assessment.Model;
+using System.Security.Cryptography;
+using System.Text;
+using Big_Bang3_Assessment.Dto;
 
 namespace Big_Bang3_Assessment.Controllers
 {
@@ -25,76 +28,15 @@ namespace Big_Bang3_Assessment.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AdminRegister>>> GetadminRegisters()
         {
-          if (_context.adminRegisters == null)
-          {
-              return NotFound();
-          }
+            if (_context.adminRegisters == null)
+            {
+                return NotFound();
+            }
             return await _context.adminRegisters.ToListAsync();
         }
 
         // GET: api/AdminRegisters/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<AdminRegister>> GetAdminRegister(int id)
-        {
-          if (_context.adminRegisters == null)
-          {
-              return NotFound();
-          }
-            var adminRegister = await _context.adminRegisters.FindAsync(id);
 
-            if (adminRegister == null)
-            {
-                return NotFound();
-            }
-
-            return adminRegister;
-        }
-
-        // PUT: api/AdminRegisters/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAdminRegister(int id, AdminRegister adminRegister)
-        {
-            if (id != adminRegister.Admin_Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(adminRegister).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AdminRegisterExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/AdminRegisters
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<AdminRegister>> PostAdminRegister(AdminRegister adminRegister)
-        {
-          if (_context.adminRegisters == null)
-          {
-              return Problem("Entity set 'TourismDbContext.adminRegisters'  is null.");
-          }
-            _context.adminRegisters.Add(adminRegister);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetAdminRegister", new { id = adminRegister.Admin_Id }, adminRegister);
-        }
 
         // DELETE: api/AdminRegisters/5
         [HttpDelete("{id}")]
@@ -153,5 +95,60 @@ namespace Big_Bang3_Assessment.Controllers
 
             return Ok("Approval status updated successfully");
         }
+
+        [HttpPost("register")]
+        public async Task<ActionResult<AdminRegister>> Register(AdminDto request)
+        {
+            CreatePasswordHash(request.Admin_Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+            var adminRegister = new AdminRegister
+            {
+                Admin_Name = request.Admin_Name,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt
+            };
+
+            _context.adminRegisters.Add(adminRegister);
+            await _context.SaveChangesAsync();
+
+            return Ok(adminRegister);
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> Login(AdminDto request)
+        {
+            var user = await _context.adminRegisters.FirstOrDefaultAsync(u => u.Admin_Name == request.Admin_Name);
+
+            if (user == null)
+            {
+                return BadRequest("User not found.");
+            }
+
+            if (!VerifyPasswordHash(request.Admin_Password, user.PasswordHash, user.PasswordSalt))
+            {
+                return BadRequest("Wrong password.");
+            }
+
+            return Ok();
+        }
+
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512(passwordSalt))
+            {
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return computedHash.SequenceEqual(passwordHash);
+            }
+        }
+
     }
 }

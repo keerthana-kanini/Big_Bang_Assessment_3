@@ -15,15 +15,15 @@ namespace Big_Bang3_Assessment.Model
         public int Number_Of_Days { get; set; }
         public int rate_for_day { get; set; }
 
-        
+
         public int Offer_For_Day { get; set; }
 
         public string tour_place { get; set; }
-     
-        public string? TourImagePath { get; set; }
-       
 
-       
+        public string TourImagePath { get; set; }
+
+
+
         public AgentRegister agentRegister { get; set; }
 
         public AdminPost adminPost { get; set; }
@@ -39,5 +39,5 @@ namespace Big_Bang3_Assessment.Model
 
     }
 
-   
+
 }

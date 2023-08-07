@@ -16,6 +16,8 @@ namespace Big_Bang3_Assessment.Model
 
 
         public ICollection<Agency> agencies { get; set; }
+        // public ICollection<Booking> bookings { get; set; }
+        // public ICollection<FeedBack> feedBacks { get; set; }
 
         public AdminRegister AdminRegister { get; set; }
     }

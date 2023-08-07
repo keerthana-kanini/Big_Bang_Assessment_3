@@ -23,6 +23,7 @@ namespace Big_Bang3_Assessment.Controllers
         }
 
         // GET: api/FeedBacks
+        // [Authorize(Roles ="Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FeedBack>>> GetfeedBacks()
         {
@@ -93,6 +94,8 @@ namespace Big_Bang3_Assessment.Controllers
             }
             feedBack.agency = feedback1;
 
+
+
             _context.feedBacks.Add(feedBack);
             await _context.SaveChangesAsync();
 
@@ -114,6 +117,17 @@ namespace Big_Bang3_Assessment.Controllers
 
             return NoContent();
         }
+
+        // GET: api/FeedBacks/ByAgency/{agencyId}
+        [HttpGet("ByAgency/{agencyId}")]
+        public async Task<ActionResult<int>> GetNumberOfFeedbacksByAgency(int agencyId)
+        {
+            var numberOfFeedbacks = await _context.feedBacks
+                .CountAsync(f => f.agency.Agency_Id == agencyId);
+
+            return numberOfFeedbacks;
+        }
+
 
         private bool FeedBackExists(int id)
         {

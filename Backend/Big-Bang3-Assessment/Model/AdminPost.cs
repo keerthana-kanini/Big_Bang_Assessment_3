@@ -9,7 +9,7 @@ namespace Big_Bang3_Assessment.Model
 
         public string place_name { get; set; }
 
-        public string? PlaceImagePath { get; set; }
+        public string PlaceImagePath { get; set; }
 
         public AdminRegister adminRegister { get; set; }
 

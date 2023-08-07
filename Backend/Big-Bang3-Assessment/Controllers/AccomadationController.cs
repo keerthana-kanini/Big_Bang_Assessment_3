@@ -22,7 +22,11 @@ namespace Big_Bang3_Assessment.Controllers
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
-
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<AccommodationDetail>>> GetAccommodations()
+        {
+            return await _context.accommodations.Include(a => a.agency).ToListAsync();
+        }
 
         [HttpGet("ByAgency/{agencyId}")]
         public async Task<ActionResult<IEnumerable<AccommodationDetail>>> GetAccommodationsByAgency(int agencyId)
@@ -38,9 +42,6 @@ namespace Big_Bang3_Assessment.Controllers
 
             return accommodations;
         }
-  
-
-
         [HttpPost]
         public async Task<ActionResult<AccommodationDetail>> Post([FromForm] AccommodationDetail accommodation, IFormFile hotelImageFile, IFormFile placeImageFile)
         {
@@ -76,20 +77,6 @@ namespace Big_Bang3_Assessment.Controllers
             accommodation.agency = r;
 
             _context.accommodations.Add(accommodation);
-            await _context.SaveChangesAsync();
-
-            return accommodation;
-        }
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<AccommodationDetail>> DeleteAccommodation(int id)
-        {
-            var accommodation = await _context.accommodations.FindAsync(id);
-            if (accommodation == null)
-            {
-                return NotFound();
-            }
-
-            _context.accommodations.Remove(accommodation);
             await _context.SaveChangesAsync();
 
             return accommodation;

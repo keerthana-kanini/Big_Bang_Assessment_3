@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\05bf9491-074c-4868-afc9-c9206a4447fe.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\05bf9491-074c-4868-afc9-c9206a4447fe.jpg"
+    },
+    {
       "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\0947cbb7-797a-4f97-b128-1bf6b40d65f4.jpg",
       "PackagePath": "staticwebassets\\uploads\\images\\0947cbb7-797a-4f97-b128-1bf6b40d65f4.jpg"
     },
@@ -69,6 +73,18 @@
       "PackagePath": "staticwebassets\\uploads\\images\\521c1c8a-d32c-4478-af52-78ef3dde0514.jpg"
     },
     {
+      "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\54481183-5d91-439a-a2f9-50f0f8f54509.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\54481183-5d91-439a-a2f9-50f0f8f54509.jpg"
+    },
+    {
+      "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\54499cac-e6c8-4d98-b1b3-4e14769818f9.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\54499cac-e6c8-4d98-b1b3-4e14769818f9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\55747c4d-031a-4e5a-a1ac-d9c9f2872277.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\55747c4d-031a-4e5a-a1ac-d9c9f2872277.jpg"
+    },
+    {
       "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\5bf3b43c-1119-4167-98fa-ab9e72f3bd70.jpg",
       "PackagePath": "staticwebassets\\uploads\\images\\5bf3b43c-1119-4167-98fa-ab9e72f3bd70.jpg"
     },
@@ -77,8 +93,16 @@
       "PackagePath": "staticwebassets\\uploads\\images\\5f9134bf-3bdc-40ec-afcd-ab539788da05.jpg"
     },
     {
+      "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\62e9be15-c334-451b-a38c-a6280e50279e.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\62e9be15-c334-451b-a38c-a6280e50279e.jpg"
+    },
+    {
       "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\661a2c6a-8635-4b16-ba86-554b603c99c8.jpg",
       "PackagePath": "staticwebassets\\uploads\\images\\661a2c6a-8635-4b16-ba86-554b603c99c8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\66cc79e9-d663-4bd8-add8-f274b395c31f.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\66cc79e9-d663-4bd8-add8-f274b395c31f.jpg"
     },
     {
       "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\69ae0bbf-c01e-4e0c-81e7-85aa28876261.jpg",
@@ -101,8 +125,16 @@
       "PackagePath": "staticwebassets\\uploads\\images\\764e4a7a-aef1-4614-a063-38f34fd4206e.jpg"
     },
     {
+      "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\78d9736d-bbd1-4117-ac96-033821bcc74c.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\78d9736d-bbd1-4117-ac96-033821bcc74c.jpg"
+    },
+    {
       "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\7a15640a-0a38-4f33-babe-5d72c402b85d.jpg",
       "PackagePath": "staticwebassets\\uploads\\images\\7a15640a-0a38-4f33-babe-5d72c402b85d.jpg"
+    },
+    {
+      "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\841d9071-3c3d-4c2f-8225-e225f250d28d.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\841d9071-3c3d-4c2f-8225-e225f250d28d.jpg"
     },
     {
       "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\890a1c45-072d-454a-b6e6-62ce17a95eb1.jpg",
@@ -137,12 +169,24 @@
       "PackagePath": "staticwebassets\\uploads\\images\\b5343dec-f1a7-4bcf-a770-c3e072de7b52.jpg"
     },
     {
+      "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\b59131cc-5dd7-4a49-80a8-bfa3bfac1b8d.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\b59131cc-5dd7-4a49-80a8-bfa3bfac1b8d.jpg"
+    },
+    {
       "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\bbca0cd8-ccfd-443c-a130-9833d0de0c5b.jpg",
       "PackagePath": "staticwebassets\\uploads\\images\\bbca0cd8-ccfd-443c-a130-9833d0de0c5b.jpg"
     },
     {
       "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\bd0941ec-39d4-462c-bd21-4a68ead299ba.jpg",
       "PackagePath": "staticwebassets\\uploads\\images\\bd0941ec-39d4-462c-bd21-4a68ead299ba.jpg"
+    },
+    {
+      "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\c1475f33-edb8-4964-affb-95ef9a3bfbaa.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\c1475f33-edb8-4964-affb-95ef9a3bfbaa.jpg"
+    },
+    {
+      "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\c69e2cf5-9d13-462d-98a6-b7bbc93b71b8.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\images\\c69e2cf5-9d13-462d-98a6-b7bbc93b71b8.jpeg"
     },
     {
       "Id": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\c8e8dc30-0853-40b3-ac19-dc7ef5a6389a.jpg",

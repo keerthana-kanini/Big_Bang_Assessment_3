@@ -25,10 +25,10 @@ namespace Big_Bang3_Assessment.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AgentRegister>>> GetagentRegisters()
         {
-          if (_context.agentRegisters == null)
-          {
-              return NotFound();
-          }
+            if (_context.agentRegisters == null)
+            {
+                return NotFound();
+            }
             return await _context.agentRegisters.ToListAsync();
         }
 
@@ -36,10 +36,10 @@ namespace Big_Bang3_Assessment.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<AgentRegister>> GetAgentRegister(int id)
         {
-          if (_context.agentRegisters == null)
-          {
-              return NotFound();
-          }
+            if (_context.agentRegisters == null)
+            {
+                return NotFound();
+            }
             var agentRegister = await _context.agentRegisters.FindAsync(id);
 
             if (agentRegister == null)
@@ -86,10 +86,10 @@ namespace Big_Bang3_Assessment.Controllers
         [HttpPost]
         public async Task<ActionResult<AgentRegister>> PostAgentRegister(AgentRegister agentRegister)
         {
-          if (_context.agentRegisters == null)
-          {
-              return Problem("Entity set 'TourismDbContext.agentRegisters'  is null.");
-          }
+            if (_context.agentRegisters == null)
+            {
+                return Problem("Entity set 'TourismDbContext.agentRegisters'  is null.");
+            }
             _context.agentRegisters.Add(agentRegister);
             await _context.SaveChangesAsync();
 
@@ -126,6 +126,39 @@ namespace Big_Bang3_Assessment.Controllers
 
             return approvedTravelAgents;
         }
+
+        // GET: api/AgentRegisters/Pending
+        [HttpGet("Pending")]
+        public async Task<ActionResult<IEnumerable<AgentRegister>>> GetPendingTravelAgents()
+        {
+            var pendingTravelAgents = await _context.agentRegisters
+                .Include(ta => ta.AdminRegister)
+                .Where(ta => ta.status == "Pending")
+                .ToListAsync();
+
+            return pendingTravelAgents;
+        }
+
+
+        [HttpGet("Status/{agentName}")]
+        public async Task<ActionResult<object>> GetStatusByAgentName(string agentName)
+        {
+            var agent = await _context.agentRegisters
+                .FirstOrDefaultAsync(a => a.Agent_Name == agentName);
+
+            if (agent == null)
+            {
+                return NotFound();
+            }
+            var result = new
+            {
+                agent_id = agent.Agent_Id,
+                status = agent.status
+            };
+
+            return result;
+        }
+
 
         private bool AgentRegisterExists(int id)
         {

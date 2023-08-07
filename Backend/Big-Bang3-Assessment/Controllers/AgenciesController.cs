@@ -26,14 +26,14 @@ namespace Big_Bang3_Assessment.Controllers
         }
 
         // GET: api/agency
-        
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Agency>>> GetAgencies()
         {
             return await _context.agencies
                 .Include(a => a.agentRegister)
-                .Include(a => a.bookings)
-                .Include(a => a.accommodationDetails)
+
+                .Include(a => a.adminPost)
                 .ToListAsync();
         }
 
@@ -148,6 +148,50 @@ namespace Big_Bang3_Assessment.Controllers
             }
 
             return agencies;
+        }
+        // GET: api/agency/agentrecords/{agentId}
+        [HttpGet("agentrecords/{agentId}")]
+        public async Task<ActionResult<int>> GetNumberOfRecordsByAgentId(int agentId)
+        {
+            var numberOfRecords = await _context.agencies
+                .CountAsync(a => a.agentRegister.Agent_Id == agentId);
+
+            return numberOfRecords;
+        }
+
+        // GET: api/agency/agent/{agentId}
+        [HttpGet("agent/{agentId}")]
+        public async Task<ActionResult<IEnumerable<Agency>>> GetAgenciesByAgentId(int agentId)
+        {
+            var agencies = await _context.agencies
+                .Where(a => a.agentRegister.Agent_Id == agentId) // Filter agencies by the Agent ID
+                .ToListAsync();
+
+            if (agencies == null || agencies.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return agencies;
+        }
+
+        // GET: api/agency/days/{agencyId}
+        [HttpGet("days/{agencyId}")]
+        public async Task<ActionResult<int>> GetNumberOfDaysByAgencyId(int agencyId)
+        {
+            var agency = await _context.agencies
+                .FirstOrDefaultAsync(a => a.Agency_Id == agencyId);
+
+            if (agency == null)
+            {
+                return NotFound();
+            }
+
+
+
+            int numberOfDays = agency.Number_Of_Days; // Replace 'NumberOfDays' with the actual property name.
+
+            return numberOfDays;
         }
 
 

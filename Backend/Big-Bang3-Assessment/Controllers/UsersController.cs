@@ -23,14 +23,14 @@ namespace Big_Bang3_Assessment.Controllers
         }
 
         // GET: api/Users
-        
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> Getusers()
         {
-          if (_context.users == null)
-          {
-              return NotFound();
-          }
+            if (_context.users == null)
+            {
+                return NotFound();
+            }
             return await _context.users.ToListAsync();
         }
 
@@ -38,10 +38,10 @@ namespace Big_Bang3_Assessment.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-          if (_context.users == null)
-          {
-              return NotFound();
-          }
+            if (_context.users == null)
+            {
+                return NotFound();
+            }
             var user = await _context.users.FindAsync(id);
 
             if (user == null)
@@ -88,10 +88,10 @@ namespace Big_Bang3_Assessment.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-          if (_context.users == null)
-          {
-              return Problem("Entity set 'TourismDbContext.users'  is null.");
-          }
+            if (_context.users == null)
+            {
+                return Problem("Entity set 'TourismDbContext.users'  is null.");
+            }
             _context.users.Add(user);
             await _context.SaveChangesAsync();
 
@@ -116,6 +116,24 @@ namespace Big_Bang3_Assessment.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpGet("GetUserIdByUsername")]
+        public async Task<ActionResult<int>> GetUserIdByUsername(string username)
+        {
+            if (_context.users == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.users.FirstOrDefaultAsync(u => u.User_Name == username);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user.User_Id;
         }
 
         private bool UserExists(int id)

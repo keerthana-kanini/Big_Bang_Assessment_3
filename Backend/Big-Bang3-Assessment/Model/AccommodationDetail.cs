@@ -15,8 +15,8 @@ namespace Big_Bang3_Assessment.Model
         public string Food { get; set; }
         public string Place { get; set; }
 
-        public string? PlaceImagePath { get; set; }
+        public string PlaceImagePath { get; set; }
 
-       public Agency agency { get; set; }
+        public Agency agency { get; set; }
     }
 }
