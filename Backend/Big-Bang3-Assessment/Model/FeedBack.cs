@@ -14,6 +14,5 @@ namespace Big_Bang3_Assessment.Model
         public User user { get; set; }
         public Agency agency { get; set; }
 
-        // public AgentRegister agentRegister { get; set; }
     }
 }

@@ -25,12 +25,8 @@ namespace Big_Bang3_Assessment.Controllers
         // GET: api/Users
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> Getusers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            if (_context.users == null)
-            {
-                return NotFound();
-            }
             return await _context.users.ToListAsync();
         }
 
@@ -38,10 +34,6 @@ namespace Big_Bang3_Assessment.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            if (_context.users == null)
-            {
-                return NotFound();
-            }
             var user = await _context.users.FindAsync(id);
 
             if (user == null)
@@ -53,7 +45,6 @@ namespace Big_Bang3_Assessment.Controllers
         }
 
         // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
@@ -84,14 +75,9 @@ namespace Big_Bang3_Assessment.Controllers
         }
 
         // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            if (_context.users == null)
-            {
-                return Problem("Entity set 'TourismDbContext.users'  is null.");
-            }
             _context.users.Add(user);
             await _context.SaveChangesAsync();
 
@@ -102,10 +88,6 @@ namespace Big_Bang3_Assessment.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            if (_context.users == null)
-            {
-                return NotFound();
-            }
             var user = await _context.users.FindAsync(id);
             if (user == null)
             {
@@ -118,27 +100,28 @@ namespace Big_Bang3_Assessment.Controllers
             return NoContent();
         }
 
+        // GET: api/Users/GetUserIdByUsername
         [HttpGet("GetUserIdByUsername")]
         public async Task<ActionResult<int>> GetUserIdByUsername(string username)
         {
-            if (_context.users == null)
+            if (string.IsNullOrEmpty(username))
             {
-                return NotFound();
+                return BadRequest("Username cannot be empty.");
             }
 
             var user = await _context.users.FirstOrDefaultAsync(u => u.User_Name == username);
 
             if (user == null)
             {
-                return NotFound();
+                return NotFound("User not found.");
             }
 
-            return user.User_Id;
+            return Ok(user.User_Id);
         }
 
         private bool UserExists(int id)
         {
-            return (_context.users?.Any(e => e.User_Id == id)).GetValueOrDefault();
+            return _context.users.Any(e => e.User_Id == id);
         }
     }
 }

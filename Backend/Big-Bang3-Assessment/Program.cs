@@ -1,5 +1,6 @@
 using System.Text;
 using Big_Bang3_Assessment.Data;
+using Big_Bang3_Assessment.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -39,6 +40,7 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+builder.Services.AddScoped<IAccommodationRepository, AccommodationRepository>();
 
 /*builder.Services.AddScoped<IAdmin, AdminClass>();
 */

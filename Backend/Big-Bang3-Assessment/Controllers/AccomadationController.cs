@@ -1,10 +1,11 @@
 ﻿using Big_Bang3_Assessment.Data;
 using Big_Bang3_Assessment.Model;
+using Big_Bang3_Assessment.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -12,74 +13,53 @@ namespace Big_Bang3_Assessment.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccommodationController : ControllerBase // Changed the controller name to AccommodationController
+    public class AccommodationController : ControllerBase
     {
-        private readonly TourismDbContext _context;
-        private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly IAccommodationRepository _accommodationRepository;
 
-        public AccommodationController(TourismDbContext context, IWebHostEnvironment hostEnvironment)
+        public AccommodationController(IAccommodationRepository accommodationRepository)
         {
-            _context = context;
-            _hostEnvironment = hostEnvironment;
+            _accommodationRepository = accommodationRepository;
         }
+        /*        [Authorize (Roles ="Users, Agent")]
+        */
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AccommodationDetail>>> GetAccommodations()
         {
-            return await _context.accommodations.Include(a => a.agency).ToListAsync();
+            var accommodations = await _accommodationRepository.GetAllAccommodationsAsync();
+            return Ok(accommodations);
         }
 
         [HttpGet("ByAgency/{agencyId}")]
         public async Task<ActionResult<IEnumerable<AccommodationDetail>>> GetAccommodationsByAgency(int agencyId)
         {
-            var accommodations = await _context.accommodations.Include(a => a.agency)
-                                                              .Where(a => a.agency.Agency_Id == agencyId)
-                                                              .ToListAsync();
+            var accommodations = await _accommodationRepository.GetAccommodationsByAgencyAsync(agencyId);
 
-            if (accommodations == null || accommodations.Count == 0)
+            if (accommodations == null || !accommodations.Any())
             {
                 return NotFound();
             }
 
-            return accommodations;
+            return Ok(accommodations);
         }
+
         [HttpPost]
         public async Task<ActionResult<AccommodationDetail>> Post([FromForm] AccommodationDetail accommodation, IFormFile hotelImageFile, IFormFile placeImageFile)
         {
-            if (hotelImageFile != null && hotelImageFile.Length > 0)
+            var addedAccommodation = await _accommodationRepository.AddAccommodationAsync(accommodation, hotelImageFile, placeImageFile);
+            return CreatedAtAction(nameof(GetAccommodations), new { id = addedAccommodation.AccommodationDetailId }, addedAccommodation);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<AccommodationDetail>> DeleteAccommodation(int id)
+        {
+            var deletedAccommodation = await _accommodationRepository.DeleteAccommodationAsync(id);
+            if (deletedAccommodation == null)
             {
-                var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "uploads/images");
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(hotelImageFile.FileName);
-                var filePath = Path.Combine(uploadsFolder, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await hotelImageFile.CopyToAsync(stream);
-                }
-
-                accommodation.HotelImagePath = fileName;
+                return NotFound();
             }
 
-            if (placeImageFile != null && placeImageFile.Length > 0)
-            {
-                var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "uploads/images");
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(placeImageFile.FileName);
-                var filePath = Path.Combine(uploadsFolder, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await placeImageFile.CopyToAsync(stream);
-                }
-
-                accommodation.PlaceImagePath = fileName;
-            }
-
-            var r = _context.agencies.Find(accommodation.agency.Agency_Id);
-            accommodation.agency = r;
-
-            _context.accommodations.Add(accommodation);
-            await _context.SaveChangesAsync();
-
-            return accommodation;
+            return deletedAccommodation;
         }
     }
 }
