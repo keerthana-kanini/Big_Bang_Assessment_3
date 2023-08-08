@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +57,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
         };
     });
+builder.Host.UseSerilog((context, config) =>
+{
+    config.WriteTo.File("Log/log.txt", rollingInterval: RollingInterval.Day);
+    if (context.HostingEnvironment.IsProduction() == false)
+    {
+        config.WriteTo.Console();
+    }
+});
+
 
 builder.Services.AddCors(options =>
 {

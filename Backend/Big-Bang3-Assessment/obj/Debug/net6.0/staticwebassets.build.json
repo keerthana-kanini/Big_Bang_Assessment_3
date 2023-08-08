@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "emN2h+Y3bHUL1DAUvBEnJiCcGO6gFQwHRFLtfT2AuVY=",
+  "Hash": "HjW7x5rM351Oi7fEmBzWBuwPBULB9mjpPody0Y0RqP8=",
   "Source": "Big-Bang3-Assessment",
   "BasePath": "_content/Big-Bang3-Assessment",
   "Mode": "Default",
@@ -493,6 +493,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\images\\6a07fd54-9059-4e50-8e72-da64c810810b.jpg"
     },
     {
+      "Identity": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\6adec8e6-3374-4412-b08d-1d5be9126145.jpg",
+      "SourceId": "Big-Bang3-Assessment",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\",
+      "BasePath": "_content/Big-Bang3-Assessment",
+      "RelativePath": "uploads/images/6adec8e6-3374-4412-b08d-1d5be9126145.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\images\\6adec8e6-3374-4412-b08d-1d5be9126145.jpg"
+    },
+    {
       "Identity": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\6f2c6469-4349-4700-9a42-716c890f4f85.jpg",
       "SourceId": "Big-Bang3-Assessment",
       "SourceType": "Discovered",
@@ -644,6 +661,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\images\\8ea18eea-4cfc-41ab-9fd6-a0e55c853622.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\927e3bd1-896e-4f16-9fe7-7e6a7401c206.jpg",
+      "SourceId": "Big-Bang3-Assessment",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\",
+      "BasePath": "_content/Big-Bang3-Assessment",
+      "RelativePath": "uploads/images/927e3bd1-896e-4f16-9fe7-7e6a7401c206.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\images\\927e3bd1-896e-4f16-9fe7-7e6a7401c206.jpg"
     },
     {
       "Identity": "C:\\Users\\test\\Desktop\\Big_Bang_Assessment_3\\Backend\\Big-Bang3-Assessment\\wwwroot\\uploads\\images\\951e254f-fa00-4724-b8cc-e8ce82a8c937.jpg",

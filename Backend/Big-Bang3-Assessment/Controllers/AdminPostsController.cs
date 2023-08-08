@@ -25,7 +25,7 @@ namespace Big_Bang3_Assessment.Controllers
         }
 
         // GET: api/AdminPosts
-        [Authorize(Roles = "Agent,Users")]
+      //  [Authorize(Roles = "Agent,Users")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AdminPost>>> GetAdminPost()
         {
